@@ -2,51 +2,99 @@ package main
 
 import (
 	"fmt"
-	"strconv"
-	"strings"
+	"math/rand/v2"
 )
 
 func main() {
-	var numStr string
-	fmt.Print("Введите вашу оценку в формате от 0 до 100: ")
-	fmt.Scanln(&numStr)
-	numStr = strings.TrimSpace(numStr)
 
-	num, err := strconv.Atoi(numStr)
-	if err != nil {
-		fmt.Printf("Ошибка: '%s' — это не целое число. Пожалуйста, введите число от 0 до 100.\n", numStr)
-		return
-	}
-
-	letter, err := transDigLetter(num)
-	if err != nil {
-		fmt.Println(err)
-
-	} else {
-		fmt.Printf("Ваша оценка  -%d- или -%s-\n", num, letter)
-	}
+	//В функцию будет передаваться число в диапазоне от 2 до 12 включительно
+	dig := 5
+	rollDice(dig)
 
 }
 
-func transDigLetter(num int) (string, error) {
+func rollDice(dig int) string {
+	roll := 0
 
-	switch {
-	case num < 0 || num > 100:
-		return "", fmt.Errorf("недопустимое значение: %d (должно быть от 0 до 100)", num)
-	case num >= 90:
-		return "A", nil
-	case num >= 80:
-		return "B", nil
-	case num >= 70:
-		return "C", nil
-	case num >= 60:
-		return "D", nil
+	for {
+		firstCub := rand.IntN(6) + 1
+		secondCub := rand.IntN(6) + 1
+		sum := firstCub + secondCub
+		roll++
+		if sum == dig {
+			rightWordVerb, rightWord := word(roll)
 
+			fmt.Printf("Выпало %d и %d, в сумме %d, на это %s %d %s.\n", firstCub, secondCub, sum, rightWordVerb, roll, rightWord)
+			break
+		}
+		fmt.Printf("Выпало %d и %d, в сумме %d, бросаем еще раз.\n", firstCub, secondCub, sum)
+	}
+	return ""
+}
+
+func word(roll int) (string, string) {
+	if roll%100 >= 11 && roll%100 <= 14 {
+		return "потребовалось", "бросков"
+	}
+	switch roll % 10 {
+	case 1:
+		return "потребовался", "бросок"
+	case 2, 3, 4:
+		return "потребовалось", "броска"
 	default:
-		return "F", nil
+		return "потребовалось", "бросков"
 	}
-
 }
+
+// package main
+
+// import (
+// 	"fmt"
+// 	"strconv"
+// 	"strings"
+// )
+
+// func main() {
+// 	var numStr string
+// 	fmt.Print("Введите вашу оценку в формате от 0 до 100: ")
+// 	fmt.Scanln(&numStr)
+// 	numStr = strings.TrimSpace(numStr)
+
+// 	num, err := strconv.Atoi(numStr)
+// 	if err != nil {
+// 		fmt.Printf("Ошибка: '%s' — это не целое число. Пожалуйста, введите число от 0 до 100.\n", numStr)
+// 		return
+// 	}
+
+// 	letter, err := transDigLetter(num)
+// 	if err != nil {
+// 		fmt.Println(err)
+
+// 	} else {
+// 		fmt.Printf("Ваша оценка  -%d- или -%s-\n", num, letter)
+// 	}
+
+// }
+
+// func transDigLetter(num int) (string, error) {
+
+// 	switch {
+// 	case num < 0 || num > 100:
+// 		return "", fmt.Errorf("недопустимое значение: %d (должно быть от 0 до 100)", num)
+// 	case num >= 90:
+// 		return "A", nil
+// 	case num >= 80:
+// 		return "B", nil
+// 	case num >= 70:
+// 		return "C", nil
+// 	case num >= 60:
+// 		return "D", nil
+
+// 	default:
+// 		return "F", nil
+// 	}
+
+// }
 
 // package main55
 
