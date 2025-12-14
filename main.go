@@ -1,50 +1,73 @@
 package main
 
-import (
-	"fmt"
-	"math/rand/v2"
-)
+import "fmt"
 
 func main() {
-
-	//В функцию будет передаваться число в диапазоне от 2 до 12 включительно
-	dig := 5
-	rollDice(dig)
+	// word := "Кукушка!"
+	PrintReplaced("Кукушка!")
 
 }
+func PrintReplaced(word string) {
+	runes := []rune(word)
 
-func rollDice(dig int) string {
-	roll := 0
+	var resultWord string
+	for i := 0; i < len(runes); i++ {
 
-	for {
-		firstCub := rand.IntN(6) + 1
-		secondCub := rand.IntN(6) + 1
-		sum := firstCub + secondCub
-		roll++
-		if sum == dig {
-			rightWordVerb, rightWord := word(roll)
-
-			fmt.Printf("Выпало %d и %d, в сумме %d, на это %s %d %s.\n", firstCub, secondCub, sum, rightWordVerb, roll, rightWord)
-			break
+		if runes[i] == 'у' {
+			runes[i] = 'а'
 		}
-		fmt.Printf("Выпало %d и %d, в сумме %d, бросаем еще раз.\n", firstCub, secondCub, sum)
+		resultWord += string(runes[i])
 	}
-	return ""
+	fmt.Println(resultWord)
 }
 
-func word(roll int) (string, string) {
-	if roll%100 >= 11 && roll%100 <= 14 {
-		return "потребовалось", "бросков"
-	}
-	switch roll % 10 {
-	case 1:
-		return "потребовался", "бросок"
-	case 2, 3, 4:
-		return "потребовалось", "броска"
-	default:
-		return "потребовалось", "бросков"
-	}
-}
+// package main
+
+// import (
+// 	"fmt"
+// 	"math/rand/v2"
+// )
+
+// func main() {
+
+// 	//В функцию будет передаваться число в диапазоне от 2 до 12 включительно
+// 	dig := 5
+// 	rollDice(dig)
+
+// }
+
+// func rollDice(dig int) string {
+// 	roll := 0
+
+// 	for {
+// 		firstCub := rand.IntN(6) + 1
+// 		secondCub := rand.IntN(6) + 1
+// 		sum := firstCub + secondCub
+// 		roll++
+// 		if sum == dig {
+// 			rightWordVerb, rightWord := word(roll)
+
+// 			fmt.Printf("Выпало %d и %d, в сумме %d, на это %s %d %s.\n", firstCub, secondCub, sum, rightWordVerb, roll, rightWord)
+// 			break
+// 		}
+// 		fmt.Printf("Выпало %d и %d, в сумме %d, бросаем еще раз.\n", firstCub, secondCub, sum)
+// 	}
+// 	return ""
+// }
+
+// func word(roll int) (string, string) {
+// 	if roll%100 >= 11 && roll%100 <= 14 {
+// 		return "потребовалось", "бросков"
+// 	}
+// 	switch roll % 10 {
+// 	case 1:
+// 		return "потребовался", "бросок"
+// 	case 2, 3, 4:
+// 		return "потребовалось", "броска"
+// 	default:
+// 		return "потребовалось", "бросков"
+// 	}
+// }
 
 // package main
 
