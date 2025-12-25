@@ -1,19 +1,42 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	printTable(4)
+	printDiamond(4)
 }
-func printTable(num int) {
 
-	for i := 1; i <= num; i++ {
-		for a := 1; a <= num; a++ {
-			if a == num {
-				fmt.Printf("%d x %d = %d\n", i, a, i*a)
-				continue
-			}
-			fmt.Printf("%d x %d = %d\t", i, a, i*a)
-		}
-	}
+
+func printDiamond(n int) {
+   fmt.Println("Мой бриллиант:")
+
+    for i := 0; i < n; i++ {
+        for j := 0; j < n-i-1; j++ {
+            fmt.Print(" ")
+        }
+        for k := 0; k < 2*i+1; k++ {
+            if k == 0 || k == 2*i { 
+                fmt.Print("#")
+            } else { 
+                fmt.Print(" ")
+            }
+        }
+        fmt.Println() 
+    }
+
+    for i := n - 2; i >= 0; i-- {
+        for j := 0; j < n-i-1; j++ {
+            fmt.Print(" ")
+        }
+        for k := 0; k < 2*i+1; k++ {
+            if k == 0 || k == 2*i { 
+                fmt.Print("#")
+            } else { 
+                fmt.Print(" ")
+            }
+        }
+        fmt.Println() 
+    }
 }
