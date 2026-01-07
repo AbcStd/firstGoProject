@@ -5,38 +5,20 @@ import (
 )
 
 func main() {
-	printDiamond(4)
+	nums := [10]int{1, 2, 3, 2, 1, 1, 2, 3, 2, 1}
+	isPalindrome(nums)
+
 }
 
+func isPalindrome(nums [10]int) {
+	for i := 0; i < len(nums)/2; i++ {
 
-func printDiamond(n int) {
-   fmt.Println("Мой бриллиант:")
+		if nums[i] != nums[len(nums)-1-i] {
+			fmt.Println("Не палиндром!")
+			return
 
-    for i := 0; i < n; i++ {
-        for j := 0; j < n-i-1; j++ {
-            fmt.Print(" ")
-        }
-        for k := 0; k < 2*i+1; k++ {
-            if k == 0 || k == 2*i { 
-                fmt.Print("#")
-            } else { 
-                fmt.Print(" ")
-            }
-        }
-        fmt.Println() 
-    }
+		}
 
-    for i := n - 2; i >= 0; i-- {
-        for j := 0; j < n-i-1; j++ {
-            fmt.Print(" ")
-        }
-        for k := 0; k < 2*i+1; k++ {
-            if k == 0 || k == 2*i { 
-                fmt.Print("#")
-            } else { 
-                fmt.Print(" ")
-            }
-        }
-        fmt.Println() 
-    }
+	}
+	fmt.Print("Это палиндром!")
 }
