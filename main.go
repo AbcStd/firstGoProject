@@ -20,5 +20,5 @@ func isPalindrome(nums [10]int) {
 		}
 
 	}
-	fmt.Print("Это палиндром!!")
+	fmt.Print("Это палиндром!")
 }
